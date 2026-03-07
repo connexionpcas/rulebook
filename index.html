@@ -65,6 +65,7 @@ body{
 /* ── PAGES ─────────────────────────────── */
 .page{display:none;min-height:100vh;position:relative;z-index:1;}
 .page.active{display:block;}
+#home.active{display:flex !important;}
 
 /* vignette bottom */
 .vignette{
@@ -83,7 +84,7 @@ body{
     radial-gradient(ellipse at 15% 70%,  rgba(90,46,0,0.18) 0%,transparent 50%),
     radial-gradient(ellipse at 85% 80%,  rgba(90,46,0,0.13) 0%,transparent 45%),
     linear-gradient(180deg,#110900 0%,#0e0800 50%,#0a0600 100%);
-  display:flex;flex-direction:column;align-items:center;
+  display:flex !important;flex-direction:column;align-items:center;
   padding:0 20px 70px;
 }
 
@@ -271,7 +272,6 @@ body{
 .explore-btn{
   margin:18px 0 28px;
   padding:15px 58px;
-  position:relative;z-index:2;
   font-family:'Cinzel Decorative',serif;
   font-size:clamp(12px,2.2vw,17px);font-weight:700;
   color:#0e0800;
@@ -884,8 +884,9 @@ body{
       <div class="gi-item"><span class="gi-num">11</span><span>All participants registered for Online Events are required to attend the <strong>Valedictory Event</strong> at <strong>2:00 PM on March 11</strong> to know the results.</span></div>
       <div class="gi-item"><span class="gi-num">12</span><span>In case of any queries, participants are kindly requested to approach the <strong>Event Coordinator</strong>.</span></div>
   </div>
+  </div>
 
-  <div style="width:100%;display:flex;justify-content:center;">
+  <div style="width:100%;display:flex;justify-content:center;position:relative;z-index:2;">
     <button class="explore-btn" onclick="showPage('events')">&#9889; EXPLORE EVENTS &#9889;</button>
   </div>
 
@@ -975,9 +976,13 @@ const sparks = Array.from({length:55}, () => {
 
 // ── PAGE NAVIGATION ─────────────────────────────────
 function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
+  document.querySelectorAll('.page').forEach(p => {
+    p.classList.remove('active');
+    p.style.display = '';
+  });
+  const target = document.getElementById(id);
+  target.classList.add('active');
+  window.scrollTo(0, 0);
 }
 
 // ── EVENTS DATA ─────────────────────────────────────
