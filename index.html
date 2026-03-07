@@ -269,9 +269,9 @@ body{
 
 /* ── explore button ── */
 .explore-btn{
-  display:block;
-  margin:18px auto 28px;
+  margin:18px 0 28px;
   padding:15px 58px;
+  position:relative;z-index:2;
   font-family:'Cinzel Decorative',serif;
   font-size:clamp(12px,2.2vw,17px);font-weight:700;
   color:#0e0800;
@@ -885,7 +885,9 @@ body{
       <div class="gi-item"><span class="gi-num">12</span><span>In case of any queries, participants are kindly requested to approach the <strong>Event Coordinator</strong>.</span></div>
   </div>
 
-  <button class="explore-btn" onclick="showPage('events')">&#9889; EXPLORE EVENTS &#9889;</button>
+  <div style="width:100%;display:flex;justify-content:center;">
+    <button class="explore-btn" onclick="showPage('events')">&#9889; EXPLORE EVENTS &#9889;</button>
+  </div>
 
 </div>
 
