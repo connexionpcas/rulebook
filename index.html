@@ -144,6 +144,10 @@ body{
   color:var(--amber);letter-spacing:1px;text-align:center;
 }
 
+@keyframes textPulse{
+  0%,100%{text-shadow:0 0 10px rgba(255,229,102,1),0 0 24px rgba(255,200,50,0.95),0 0 50px rgba(212,168,40,0.8);}
+  50%{text-shadow:0 0 18px rgba(255,240,120,1),0 0 40px rgba(255,220,60,1),0 0 80px rgba(232,168,40,1),0 0 120px rgba(200,130,10,0.6);}
+}
 @keyframes glowPulse{
   0%,100%{box-shadow:0 0 20px rgba(212,168,40,0.4),inset 0 0 14px rgba(181,80,20,0.15);}
   50%    {box-shadow:0 0 38px rgba(232,202,120,0.8),inset 0 0 20px rgba(181,80,20,0.3);}
@@ -892,18 +896,18 @@ body{
   <div class="home-banner">
     <div class="hb-cell">
       <div class="hb-lbl">&#128197; Event Date</div>
-      <div class="hb-val-big">11 MAR</div>
-      <div class="hb-val-sub">2026</div>
+      <div class="hb-val-big" style="color:#ffe566;text-shadow:0 0 10px rgba(255,229,102,1),0 0 24px rgba(255,200,50,0.95),0 0 50px rgba(212,168,40,0.8);animation:textPulse 2s ease-in-out infinite;">11 MAR</div>
+      <div class="hb-val-sub" style="color:#ffe566;text-shadow:0 0 10px rgba(255,229,102,1),0 0 24px rgba(255,200,50,0.95),0 0 50px rgba(212,168,40,0.8);animation:textPulse 2s ease-in-out infinite 0.4s;">2026</div>
     </div>
     <div class="hb-cell">
       <div class="hb-lbl">&#128176; Registration Fee</div>
-      <div class="hb-val-big">&#8377;150</div>
-      <div class="hb-val-sub">Per Student</div>
+      <div class="hb-val-big" style="color:#ffe566;text-shadow:0 0 10px rgba(255,229,102,1),0 0 24px rgba(255,200,50,0.95),0 0 50px rgba(212,168,40,0.8);animation:textPulse 2s ease-in-out infinite;">&#8377;150</div>
+      <div class="hb-val-sub" style="color:#ffe566;text-shadow:0 0 10px rgba(255,229,102,1),0 0 24px rgba(255,200,50,0.95),0 0 50px rgba(212,168,40,0.8);animation:textPulse 2s ease-in-out infinite 0.4s;">Per Student</div>
     </div>
     <div class="hb-cell">
       <div class="hb-lbl">&#127985; Mode</div>
-      <div class="hb-val-big" style="font-size:clamp(14px,2.8vw,24px);">OFFLINE</div>
-      <div class="hb-val-sub">+ Online Events</div>
+      <div class="hb-val-big" style="font-size:clamp(14px,3.2vw,26px);letter-spacing:2px;color:#ffe566;text-shadow:0 0 10px rgba(255,229,102,1),0 0 24px rgba(255,200,50,0.95),0 0 50px rgba(212,168,40,0.8);animation:textPulse 2s ease-in-out infinite;">OFFLINE</div>
+      <div class="hb-val-big" style="font-size:clamp(14px,3.2vw,26px);letter-spacing:2px;color:#ffe566;text-shadow:0 0 10px rgba(255,229,102,1),0 0 24px rgba(255,200,50,0.95),0 0 50px rgba(212,168,40,0.8);animation:textPulse 2s ease-in-out infinite 0.4s;">& ONLINE</div>
     </div>
   </div>
 
