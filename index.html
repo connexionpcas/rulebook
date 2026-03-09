@@ -552,6 +552,79 @@ body{
 .meta-cell{background:rgba(107,45,14,0.08);border:1px solid rgba(107,45,14,0.18);padding:10px 13px;}
 .meta-lbl{font-family:'Orbitron',sans-serif;font-size:8px;color:#f0a830;letter-spacing:2px;margin-bottom:4px;text-shadow:0 0 6px rgba(240,168,48,0.5);}
 .meta-val{font-size:12px;color:var(--gold2);font-weight:600;}
+
+/* ── LUNCH CARD ── */
+.lunch-card{
+  display:flex;align-items:center;justify-content:center;gap:18px;
+  margin:20px auto 4px;
+  max-width:860px;width:100%;
+  background:linear-gradient(135deg,rgba(212,168,40,0.18),rgba(160,80,16,0.28),rgba(212,168,40,0.14));
+  border:1.5px solid var(--gold);
+  border-radius:4px;
+  padding:16px 24px;
+  box-shadow:0 0 24px rgba(212,168,40,0.25),inset 0 0 18px rgba(181,80,20,0.1);
+  animation:glowPulse 3s ease-in-out infinite;
+  position:relative;overflow:hidden;
+}
+.lunch-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold2),var(--amber),var(--gold2),transparent);
+}
+.lunch-icon{font-size:28px;flex-shrink:0;}
+.lunch-text{text-align:center;flex:1;}
+.lunch-title{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(13px,2.2vw,18px);
+  font-weight:700;color:var(--gold2);
+  text-shadow:0 0 14px rgba(232,202,120,0.7);
+  letter-spacing:2px;
+}
+.lunch-sub{
+  font-size:12px;color:var(--cream2);
+  margin-top:4px;letter-spacing:0.5px;
+}
+
+/* ── ESPORTS SUB-TABS ── */
+.esports-tabs{
+  display:flex;gap:10px;justify-content:center;
+  margin-bottom:18px;flex-wrap:wrap;
+}
+.esports-tab-btn{
+  font-family:'Orbitron',sans-serif;
+  font-size:11px;letter-spacing:2px;font-weight:700;
+  padding:10px 24px;
+  background:rgba(42,24,0,0.7);
+  border:1.5px solid rgba(212,168,40,0.4);
+  color:var(--amber);
+  cursor:pointer;
+  transition:all 0.25s;
+  text-transform:uppercase;
+  position:relative;overflow:hidden;
+}
+.esports-tab-btn:hover{
+  border-color:var(--gold);
+  color:var(--gold2);
+  box-shadow:0 0 14px rgba(212,168,40,0.3);
+}
+.esports-tab-btn.active{
+  background:linear-gradient(135deg,rgba(160,80,16,0.5),rgba(42,24,0,0.9));
+  border-color:var(--gold2);
+  color:var(--gold2);
+  box-shadow:0 0 20px rgba(212,168,40,0.4),inset 0 0 12px rgba(181,80,20,0.2);
+}
+.esports-tab-btn .tab-game-icon{font-size:16px;margin-right:7px;}
+.esports-panel{display:none;}
+.esports-panel.active{display:block;}
+.esports-meta-strip{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+  margin:0 0 16px;
+}
+.esports-meta-chip{
+  font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:1.5px;
+  padding:5px 14px;color:var(--gold2);
+  background:rgba(107,45,14,0.18);
+  border:1px solid rgba(212,168,40,0.35);
+}
 </style>
 </head>
 <body>
@@ -884,6 +957,15 @@ body{
       <div class="gi-item"><span class="gi-num">11</span><span>All participants registered for Online Events are required to attend the <strong>Valedictory Event</strong> at <strong>2:00 PM on March 11</strong> to know the results.</span></div>
       <div class="gi-item"><span class="gi-num">12</span><span>In case of any queries, participants are kindly requested to approach the <strong>Event Coordinator</strong>.</span></div>
   </div>
+  <!-- Lunch highlight card -->
+  <div class="lunch-card">
+    <span class="lunch-icon">🍽️</span>
+    <div class="lunch-text">
+      <div class="lunch-title">Lunch Will Be Provided</div>
+      <div class="lunch-sub">Complimentary lunch is arranged for all registered participants on the day of the event.</div>
+    </div>
+    <span class="lunch-icon">🍽️</span>
+  </div>
   </div>
 
   <div style="width:100%;display:flex;justify-content:center;position:relative;z-index:2;">
@@ -1108,24 +1190,63 @@ const eventsData = {
     coordinator: 'Ashwanth J — 63697 93959 | Kishore M — 81226 98200'
   },
   esports: {
-    name: 'E-Sports (BGMI)',
-    sub: 'Team Deathmatch',
+    name: 'E-Sports',
+    sub: 'BGMI & Free Fire Tournament',
     icon: '🎮',
     type: 'OFFLINE',
-    rules: [
-      'Each team must have <strong>4 players (4 vs 4)</strong>. All players must be from the same college.',
-      'Only <strong>registered players</strong> can participate.',
-      'Mode: <strong>Team Deathmatch (TDM)</strong> — Map: <strong>Warehouse</strong>.',
-      'The first team to reach <strong>40 kills wins</strong>.',
-      'If time ends first, the team with <strong>more kills wins</strong>.',
-      'In case of a tie, the team with the <strong>highest individual kill player wins</strong>.',
-      '<strong>Hacks, cheats, or third-party tools</strong> are strictly prohibited.',
-      'Only <strong>M416 is allowed</strong>. Changing weapons is not allowed.',
-      'If a player changes the weapon, the <strong>team will be eliminated</strong>.'
-    ],
-    venue: 'A Block Computer Lab 2',
-    timing: '10:00 AM',
-    coordinator: 'Shivashankar M — 9176835221 | Antony Staney I — 9150709452'
+    isEsports: true,
+    games: {
+      bgmi: {
+        name: 'BGMI Tournament',
+        icon: '🪖',
+        entryFee: '₹150 per team',
+        mode: 'Classic (TPP)',
+        map: 'Erangel',
+        teamType: 'Squad (4 Players)',
+        rules: [
+          'Each team must consist of <strong>4 players (Squad)</strong>.',
+          'All players must be from the <strong>same college</strong>.',
+          'Only <strong>registered players</strong> are allowed to participate in the tournament.',
+          'The match will be played in a <strong>Private Room on the Erangel map</strong>.',
+          'Teams must join the room on time using the <strong>Room ID and Password</strong> provided by the organizers.',
+          'The team achieving <strong>"Winner Winner Chicken Dinner"</strong> will be declared the winner.',
+          'In some cases, final rankings may also consider <strong>placement points and total team kills</strong>.',
+          'Use of <strong>hacks, cheats, exploits, or third-party tools</strong> is strictly prohibited.',
+          '<strong>Teaming with other squads</strong> or intentionally helping opponents is not allowed.',
+          'Any <strong>abusive behavior, toxic language, or unfair play</strong> may result in disqualification.',
+          'Players must <strong>follow the instructions</strong> of the event organizers.',
+          'The <strong>organizers\' decision will be final</strong> in case of any disputes.'
+        ],
+        venue: 'A Block Computer Lab 2',
+        timing: '10:00 AM',
+        coordinator: 'Shivashankar M — 9176835221 | Antony Staney I — 9150709452'
+      },
+      freefire: {
+        name: 'Free Fire Tournament',
+        icon: '🔥',
+        entryFee: '₹150 per team',
+        mode: 'Classic',
+        map: 'Bermuda',
+        teamType: 'Squad (4 Players)',
+        rules: [
+          'Each team must consist of <strong>4 players (Squad)</strong>.',
+          'All players must be from the <strong>same college</strong>.',
+          'Only <strong>registered players</strong> are allowed to participate in the tournament.',
+          'The match will be played in a <strong>Custom Room on the Bermuda map</strong>.',
+          'Teams must join the room on time using the <strong>Room ID and Password</strong> provided by the organizers.',
+          'The team achieving <strong>"Booyah!"</strong> will be declared the winner.',
+          'In some cases, final rankings may also consider <strong>placement points and total team kills</strong>.',
+          'Use of <strong>hacks, cheats, glitches, or third-party tools</strong> is strictly prohibited.',
+          '<strong>Teaming with other squads</strong> or intentionally helping opponents is not allowed.',
+          'Any <strong>abusive behavior or toxic language</strong> may result in disqualification.',
+          'Players must <strong>follow the instructions</strong> of the event organizers.',
+          'The <strong>organizers\' decision will be final</strong> in case of any disputes.'
+        ],
+        venue: 'A Block Computer Lab 2',
+        timing: '10:00 AM',
+        coordinator: 'Shivashankar M — 9176835221 | Antony Staney I — 9150709452'
+      }
+    }
   },
   cinebyte: {
     name: 'CineByte',
@@ -1230,6 +1351,27 @@ const eventsData = {
   }
 };
 
+// ── BUILD GAME PANEL ────────────────────────────────
+function buildGamePanel(g) {
+  const rows = g.rules.map((r,i) =>
+    '<div class="rule-row" style="animation-delay:' + (i*0.045) + 's">' +
+    '<span class="r-num">' + String(i+1).padStart(2,'0') + '.</span>' +
+    '<span class="r-txt">' + r + '</span></div>'
+  ).join('');
+  const meta =
+    '<div class="meta-cell"><div class="meta-lbl">&#128176; Entry Fee</div><div class="meta-val">' + g.entryFee + '</div></div>' +
+    '<div class="meta-cell"><div class="meta-lbl">&#127918; Mode</div><div class="meta-val">' + g.mode + '</div></div>' +
+    '<div class="meta-cell"><div class="meta-lbl">&#127758; Map</div><div class="meta-val">' + g.map + '</div></div>' +
+    '<div class="meta-cell"><div class="meta-lbl">&#128101; Team Type</div><div class="meta-val">' + g.teamType + '</div></div>' +
+    '<div class="meta-cell"><div class="meta-lbl">&#128205; Venue</div><div class="meta-val">' + g.venue + '</div></div>' +
+    '<div class="meta-cell"><div class="meta-lbl">&#9201; Timing</div><div class="meta-val">' + g.timing + '</div></div>' +
+    '<div class="meta-cell"><div class="meta-lbl">&#128222; Coordinator</div><div class="meta-val">' + g.coordinator + '</div></div>' +
+    '<div class="meta-cell"><div class="meta-lbl">&#127991; Type</div><div class="meta-val">OFFLINE EVENT</div></div>';
+  return '<div class="r-box"><div class="r-box-title">&#9876; Official Rules &amp; Regulations</div>' + rows + '</div>' +
+    '<div class="r-box" style="padding:18px 22px;"><div class="r-box-title">&#128203; Event Details</div>' +
+    '<div class="meta-grid">' + meta + '</div></div>';
+}
+
 // ── SHOW RULES ──────────────────────────────────────
 function showRules(key) {
   const d = eventsData[key];
@@ -1237,27 +1379,57 @@ function showRules(key) {
   document.getElementById('rules-breadcrumb').textContent =
     'RIVALS 2K26 > EVENTS > ' + d.name.toUpperCase();
 
-  let meta = '';
-  if (d.venue) meta += '<div class="meta-cell"><div class="meta-lbl">&#128205; Venue</div><div class="meta-val">' + d.venue + '</div></div>';
-  meta += '<div class="meta-cell"><div class="meta-lbl">&#9201; Timing</div><div class="meta-val">' + d.timing + '</div></div>';
-  meta += '<div class="meta-cell"><div class="meta-lbl">&#128222; Coordinator</div><div class="meta-val">' + d.coordinator + '</div></div>';
-  meta += '<div class="meta-cell"><div class="meta-lbl">&#127991; Type</div><div class="meta-val">' + d.type + ' EVENT</div></div>';
+  if (d.isEsports) {
+    // Build esports page with sub-tabs
+    const tabsHtml =
+      '<div class="esports-tabs">' +
+        '<button class="esports-tab-btn active" id="tab-bgmi" onclick="switchEsportsTab(\'bgmi\')">' +
+          '<span class="tab-game-icon">🪖</span>BGMI' +
+        '</button>' +
+        '<button class="esports-tab-btn" id="tab-freefire" onclick="switchEsportsTab(\'freefire\')">' +
+          '<span class="tab-game-icon">🔥</span>FREE FIRE' +
+        '</button>' +
+      '</div>';
 
-  const rows = d.rules.map((r,i) =>
-    '<div class="rule-row" style="animation-delay:' + (i*0.045) + 's">' +
-    '<span class="r-num">' + String(i+1).padStart(2,'0') + '.</span>' +
-    '<span class="r-txt">' + r + '</span></div>'
-  ).join('');
+    const bgmiPanel  = '<div class="esports-panel active" id="panel-bgmi">'  + buildGamePanel(d.games.bgmi)     + '</div>';
+    const ffPanel    = '<div class="esports-panel"        id="panel-freefire">' + buildGamePanel(d.games.freefire) + '</div>';
 
-  document.getElementById('rules-content').innerHTML =
-    '<div style="font-size:46px;margin-bottom:6px;">' + d.icon + '</div>' +
-    '<div class="ev-big-title">' + d.name + '</div>' +
-    '<div class="ev-big-sub">' + d.sub + '</div>' +
-    '<div class="r-box"><div class="r-box-title">&#9876; Official Rules &amp; Regulations</div>' + rows + '</div>' +
-    '<div class="r-box" style="padding:18px 22px;"><div class="r-box-title">&#128203; Event Details</div>' +
-    '<div class="meta-grid">' + meta + '</div></div>';
+    document.getElementById('rules-content').innerHTML =
+      '<div style="font-size:46px;margin-bottom:6px;">' + d.icon + '</div>' +
+      '<div class="ev-big-title">' + d.name + '</div>' +
+      '<div class="ev-big-sub">' + d.sub + '</div>' +
+      tabsHtml + bgmiPanel + ffPanel;
+  } else {
+    let meta = '';
+    if (d.venue) meta += '<div class="meta-cell"><div class="meta-lbl">&#128205; Venue</div><div class="meta-val">' + d.venue + '</div></div>';
+    meta += '<div class="meta-cell"><div class="meta-lbl">&#9201; Timing</div><div class="meta-val">' + d.timing + '</div></div>';
+    meta += '<div class="meta-cell"><div class="meta-lbl">&#128222; Coordinator</div><div class="meta-val">' + d.coordinator + '</div></div>';
+    meta += '<div class="meta-cell"><div class="meta-lbl">&#127991; Type</div><div class="meta-val">' + d.type + ' EVENT</div></div>';
+
+    const rows = d.rules.map((r,i) =>
+      '<div class="rule-row" style="animation-delay:' + (i*0.045) + 's">' +
+      '<span class="r-num">' + String(i+1).padStart(2,'0') + '.</span>' +
+      '<span class="r-txt">' + r + '</span></div>'
+    ).join('');
+
+    document.getElementById('rules-content').innerHTML =
+      '<div style="font-size:46px;margin-bottom:6px;">' + d.icon + '</div>' +
+      '<div class="ev-big-title">' + d.name + '</div>' +
+      '<div class="ev-big-sub">' + d.sub + '</div>' +
+      '<div class="r-box"><div class="r-box-title">&#9876; Official Rules &amp; Regulations</div>' + rows + '</div>' +
+      '<div class="r-box" style="padding:18px 22px;"><div class="r-box-title">&#128203; Event Details</div>' +
+      '<div class="meta-grid">' + meta + '</div></div>';
+  }
 
   showPage('rules');
+}
+
+// ── ESPORTS TAB SWITCH ───────────────────────────────
+function switchEsportsTab(game) {
+  document.querySelectorAll('.esports-tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.esports-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + game).classList.add('active');
+  document.getElementById('panel-' + game).classList.add('active');
 }
 </script>
 </body>
